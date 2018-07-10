@@ -12,6 +12,15 @@ public class game {
 	static char[] chosenWordx;
 	static int score;
 	static int correct;
+	static boolean win;
+	static int wrong;
+	static int bob;
+	static String drawing =  
+			"  |   |\n" + 
+			"  O   |\n" + 
+			" /|\\  |\n" + 
+			" / \\  |\n" + 
+			"      |";
 	static Scanner y = new Scanner(System.in);
 
 	public static void goesFirst() {
@@ -46,6 +55,7 @@ public class game {
 	public static void solve(int NoOfGuesses) {
 		do {
 			correct = 0;
+			bob = 0;
 			System.out.println("what is your guess");
 			guess = y.nextLine();
 			
@@ -55,40 +65,61 @@ public class game {
 
 				if (guess.charAt(0) == chosenWordx[i]) {
 					correct = 1;
+					bob = 2;
+					score++;
 					System.out.println("Correct Guess!");
 
 					reveal[i] = guess.charAt(0);
 					reveal.toString();	
 					break;
 				} 
-				
-				
-				
-				
-			
-//				if(correct == 2) {
-//					NoOfGuesses --;
-//					System.out.println("wrong!");
-//					System.out.println("you have " +  NoOfGuesses + " remaining");
-//					
-//				}
-				
-			
-		
-			
-				
-			}	
-			if(correct != 1){
-		
+				if(guess.charAt(0) == reveal[i]) {
+					System.out.println("You have already chosen this letter");
+				}
 
-				System.out.print("wrong!");
+			}	
+				
+			if(correct != 1) {
+				for(int x = 0; x < drawing.length(); x++) {
+					if(bob != 2) {
+						
+				char[] man = drawing.toCharArray();
+				man[x] = drawing.charAt(wrong);
+				System.out.println("you have " + NoOfGuesses + " remaining");
 				NoOfGuesses --;
+				wrong++;
+				drawing.toString();
+				System.out.println(drawing);
+					}else if(bob == 2) {
+					break;
+				}else {
+						break;
+					}
+				
+
+			
+				
+				
 			}
+			}
+			if(correct == 1)
 			System.out.println(reveal);
-			}while(NoOfGuesses > 0);
+			
+			if(score == chosenWord.length()) {
+				win = true;
+				System.out.println("well done you win");
+				break;
+			}
+		
+			
+			
+			
+			}while(NoOfGuesses >= 0 || win == true);
+			
+			if(!win) {
 		System.out.println("you lose");
 	
-
+			}
 }
 }
 

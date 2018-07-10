@@ -7,6 +7,6 @@ public class main {
 //		playerTwo.playerTwoDetails();
 		game.goesFirst();
 		game.word();
-		game.solve(3);
+		game.solve(30);
 	}
 }
