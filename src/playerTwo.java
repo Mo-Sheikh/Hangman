@@ -5,7 +5,7 @@ public class playerTwo {
 	
 	public static void playerTwoDetails() {
 		System.out.println("Player two - what is your name");
-		String playerTwoName = x.next();
+		playerTwoName = x.nextLine();
 	}
 
 }
